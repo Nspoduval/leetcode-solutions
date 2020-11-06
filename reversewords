@@ -1,0 +1,9 @@
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+
+def reverseWords(self, s):
+
+tmp_res = s.split()
+tmp_res.reverse()
+s = " ".join(tmp_res)
+return s
