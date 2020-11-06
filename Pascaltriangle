@@ -1,0 +1,19 @@
+    def getRow(self, rowIndex: int) -> List[int]:
+        pascal=[[1]]
+        pascal.append([1,1])
+        
+        #pascal=[[1]]*rowIndex
+        #pascal[1].append(1)
+        
+        for i in range(2,rowIndex+1):
+            j=0
+            pascal.append([1])
+            print(pascal,i)
+                       
+                    
+            while j<i-1:
+                pascal[i].append(pascal[i-1][j]+pascal[i-1][j+1])
+                j+=1
+            pascal[i].append(1)
+            
+        return pascal[rowIndex]
