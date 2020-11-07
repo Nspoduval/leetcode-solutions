@@ -1,0 +1,22 @@
+
+#print(s[:-1])
+class Solution:
+    
+    def __init__(self,s):
+        self.s=s
+        
+    def reversestring(self):
+        return self.s[-1:]
+        
+    def reverseWords(self) -> str:
+        
+        print(self.reversestring())    #string is reversed
+        #reversewords(s)     #words are reversed
+
+
+c=Solution("how are you")
+c.reverseWords()
+   
+d=Solution("yoyo")
+
+d.reverseWords()
