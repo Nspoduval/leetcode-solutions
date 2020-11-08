@@ -1,0 +1,76 @@
+#Qn: need to express a number n using minimum number of operations. ( x2. x3 and +1)
+
+
+def ops(n):
+    opnums=[2,3,1]
+
+    minNumops=[float("inf")]*(n+1)
+
+    minNumops[1]=0
+    minNumops[0]=0
+
+    for i in range(2,n+1):
+
+        Numopsby2=float("inf")
+        Numopsby3=float("inf")
+        Numopsby1=float("inf")
+
+        if i%2==0:
+
+            Numopsby2=minNumops[int(i/2)]
+
+        if i%3==0:
+
+            Numopsby3=minNumops[int(i/3)]
+
+        Numopsby1=minNumops[i-1]
+
+        #print(i,"numopsby2",Numopsby2,"numopsby3",Numopsby3,"numopsby1",Numopsby1,minNumops)
+
+        Numops=min(Numopsby2,Numopsby3,Numopsby1)+1
+
+        if Numops<minNumops[i]:
+                    minNumops[i]=Numops
+
+        #print(i,"numops=",Numops,"numopsby2=",Numopsby2,"numopsby3=",Numopsby3,"numopsby1=",Numopsby1,minNumops)
+
+        #backtracking
+    #print(minNumops)
+    #n=i
+    output=[]
+
+    while n>0:
+        output.append(n)
+        #print(n,output)
+
+        if n%2!=0 and n%3!=0:
+            n=n-1
+
+        elif n%2==0 and n%3==0:
+            n=n//3
+
+        elif n%2==0:
+
+            if(minNumops[n-1]<minNumops[int(n/2)]):
+                n=n-1
+            else:
+                n=n//2
+
+        elif n%3==0:
+
+            if(minNumops[n-1]<minNumops[int(n/3)]):
+                n=n-1
+            else:
+
+                n=n//3
+
+    #print(output)
+    return list(reversed(output))
+
+
+
+print(ops(13))
+
+
+
+
