@@ -1,0 +1,68 @@
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+class Stack:
+    items=[]
+    
+    def __init__(self):
+        self.items=[]
+    
+    def push(self,element):
+        self.items.append(element)
+        
+    def pop(self):
+        if(len(self.items)==0):
+            print("can not pop from an empty list")
+            return None
+        print("last item has been popped from list")
+        return self.items.pop()
+    
+    def printStack(self):
+        for i in self.items:
+            print(i)
+    
+    def isEmpty(self):
+        return len(self.items) == 0
+        
+stack=Stack() #initialize the stack object
+"""for char in str:
+    if char in ['(','[']:
+        stack.Push(char)
+"""
+
+def find_mismatch(text):
+    opening_brackets_stack = []
+    for i, next in enumerate(text):
+        if next in ['(','[','{']:
+            stack.push(next)
+        if next in [')',']','}']:
+            if stack.isEmpty():
+                return i+1
+            
+            top=stack.pop()
+            if top=='(' and next!=')' or top=='[' and next!=']' or top=='{' and next!='}':
+                return i+1
+        
+            
+    if stack.isEmpty():
+        return "Success"
+    
+
+text=("foo)()([[[]]])")
+print(find_mismatch(text))
+                
+                    
+            
+#stack.push(10)
+#stack.push(20)
+#stack.push(22)
+#stack.printStack() #print the stack
+#stack.pop()
+#stack.printStack()
+#stack.isEmpty()
+
+
+
+
+    
+
+        
