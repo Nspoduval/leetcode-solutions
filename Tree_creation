@@ -1,0 +1,73 @@
+#input eg: parent[i] = [4  -1   4   1   1   1]
+#          nodes[i]  = [0 , 1,  2,  3,  4,  5]
+
+#structure  2D array=> [   node(1)                           ]
+                       [   node[3]      node[4]     node[5]  ]
+                       [           node[2] node[0]           ]
+
+class Node:
+            
+  def __init__(self,val):
+    self.val=val
+    self.children=[]
+              
+  def addchild(self,val):
+    self.children.append(val)
+              
+ class Tree_height:
+  
+  def read(self):
+    self.n = int(sys.stdin.readline())
+    self.parent = list(map(int, sys.stdin.readline().split()))
+
+  
+  def compute_height(self):
+  
+    nodes=[Node(i) for i in range(self.n)]
+    
+    #defining an array of child nodes with value = index of the array upto n
+    #we already know the length of the array from the parent list's size
+    
+    #nodes=[node(0) node(1) node(2) node(3) node(4) node(5) node(6)]
+    
+    for i in range(self.n):
+    #traversing through the input list, whose values are the parent node values.
+    #index of the list is the child node values
+    
+      if self.parent[i]==-1:
+        self.root=nodes[i]
+      #now we point the root to the child node(within the list of nodes) whose parent is -1
+        
+      else:
+        
+        nodes[parent[i]].addchild(nodes[i])
+          
+        #here we are choosing the parent node from the list of nodes and assigning it a child, node[i]
+        
+        
+        #next part tree traversal
+        
+        #basic logic for level order tree traversal is: initially enque the root element
+        #while q not empty, dequeue one element and enqueue its children. repeat this procudure until queue is empty.
+        
+         q = queue.Queue()
+         q.put(self.root)
+         height=0
+         
+         while not q empty:
+         
+            size=q.size()
+            if size>0:
+                height+=1
+            
+            for j in range(size):
+            
+                item=q.get()
+                
+                for i in item.children:
+                    
+                    q.put(i)
+    
+            #for regular level order traversal, dont need the extra for loop, "for j in range(size)" .here its needed bcos we want size to get updated only when we are traversing
+            #to a new level in the tree.
+          
