@@ -1,0 +1,43 @@
+
+class Solution(object):
+    def __init__(self):
+        self.traversal= []
+
+    def preorderTraversal(self, root):
+        """
+               
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if root==None:
+            return []
+        
+        q=Queue()
+        #value=root.val
+        q.put(root)
+        
+        
+        
+        
+        while (q.size!=0):
+            root=q.get()
+            
+            self.traversal.append(root.val)
+            print("traversal",self.traversal)
+            print("printing queue",q.printq())
+            print("size of queue",q.size)
+            
+            if root==None:
+                continue
+            else:
+                if root.left:
+                    q.put(root.left)
+                    
+                if root.right:
+                    q.put(root.right)
+                 
+        
+        #self.preorderTraversal(root.left)
+        #self.preorderTraversal(root.right)
+        
+        return self.traversal
