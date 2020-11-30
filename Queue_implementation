@@ -1,0 +1,58 @@
+class Node(object):
+    def __init__(self,val):
+        self.val=val
+        self.next=None
+
+class Queue(object):
+    
+    def __init__(self):
+        self.head=None
+        self.size=0
+        self.tail=None
+    
+    def put(self,val):
+        if self.head==None:
+            self.head=Node(val)
+            self.tail=self.head
+        else:
+            curr=Node(val)
+            curr.next=self.head
+            self.head=curr
+            
+            if self.tail==None:
+                self.tail=self.head.next
+        #print(self.tail.val)
+        self.size+=1
+        
+    def get(self):
+        
+        if self.tail==None:
+            return
+        if self.tail==self.head:
+            temp=self.head.val
+            self.head=None
+            self.tail=None
+            self.size-=1
+            return temp
+        else:
+            curr=self.head
+            
+            while curr.next!=self.tail:
+                curr=curr.next
+                
+            temp=self.tail.val
+            #print(temp)
+            self.tail=curr
+            self.tail.next=None
+            self.size-=1
+        return temp
+            
+    def printq(self):
+        curr=self.head
+        output=[]
+        
+        while curr!=None:
+            output.append(curr.val)
+            curr=curr.next
+
+        return output
