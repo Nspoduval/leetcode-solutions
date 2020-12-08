@@ -1,0 +1,98 @@
+https://leetcode.com/problems/max-stack/
+
+
+
+class MaxStack(object):
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack=[]
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        if len(self.stack)==0:
+            self.stack.append((x,x))
+        else:                    
+            m=self.stack[-1][1]
+        
+            self.stack.append((x,max(x,m)))
+        
+        #print("just finished push, stack is",self.stack)
+        
+    def pop(self):
+        """
+        :rtype: int
+        """
+        m=self.stack.pop()
+        
+        #print("just finished pop, stack is",self.stack)
+        
+        return m[0]
+        
+    def top(self):
+        """
+        :rtype: int
+        """
+        return self.stack[-1][0]
+
+    def peekMax(self):
+        """
+        :rtype: int
+        """
+        return self.stack[-1][1]
+
+    def popMax(self):
+        """
+        :rtype: int
+        """
+    
+        maxm=self.peekMax()
+        val=self.stack[-1][0]
+        i=len(self.stack)-1
+        
+        if val==maxm:
+            return self.pop()
+        
+        
+        #lookup the max item index
+        
+        while val!=maxm:
+            i-=1
+            val=self.stack[i][0]
+        
+        #print("found max elem and index is",val,i)
+        
+        if i!=0:
+            m=self.stack[i-1][1]
+        else:
+            m=self.stack[i+1][1]
+        for j in range(i,len(self.stack)-1):
+            x=self.stack[j+1][0]
+            if x>m:
+                m=x
+            self.stack[j]=(x,m)
+              
+        #print("nex-t biggest element is",m)
+              
+        
+        self.stack.pop()
+        #self.stack[i]=(k,m)
+        #print(self.stack)
+        
+        #print("just finished popmax, stack is",self.stack)
+        
+        return maxm
+
+
+# Your MaxStack object will be instantiated and called as such:
+# obj = MaxStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.peekMax()
+# param_5 = obj.popMax()
