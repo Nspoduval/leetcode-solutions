@@ -1,0 +1,32 @@
+ """
+        if root==None:
+            return
+        
+        
+        while self.stack or root:
+            while root:
+                self.stack.append(root)
+                root=root.left
+                
+            root=self.stack.pop()
+            val=self.debug.pop()
+
+            self.traversal.append(root.val)            
+            root=root.right
+                
+        return self.traversal
+    
+    
+    #recursive solution
+    
+    def inorderTraversal(root):
+        
+        if root==None:
+            return
+        
+        self.inorderTraversal(root.left)
+        
+        print(root.val)
+        
+        self.inorderTraversal(root.right)
+        
