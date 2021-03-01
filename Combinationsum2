@@ -1,0 +1,52 @@
+
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Feb 26 20:01:38 2021
+
+@author: nithinpod
+"""
+# A=[1,2,3]
+#print all combinations of A
+
+
+#Combination sum
+res=[]
+
+
+def combinationsum(A,i,target,slate):
+    
+    #backtracking case
+    #print("slate is",slate)
+    #print("i is ",i)    
+    if sum(slate)==target:
+        res.append(slate[:])
+        return
+    
+    elif sum(slate)>target:
+        return
+    
+    #base case
+    if i==len(A):
+        return
+    
+    #recursive case
+     #Exclude s[i]
+     
+    combinationsum(A,i+1,target,slate)
+     
+     #Include s[i]
+    slate.append(A[i])
+    combinationsum(A,i+1,target,slate)
+    slate.pop()
+     
+    return
+
+#A=[1,2,3]
+A = [10,1,2,7,6,1,5]
+target=8
+
+combinationsum(A,0,target,[])
+print(res)
+        
